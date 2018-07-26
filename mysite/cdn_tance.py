@@ -5,6 +5,8 @@ from urllib import parse
 import time
 import pymysql
 
+#监控gsd响应时间
+
 class cdn(object):
     def __init__(self,url):
         self.buffer = BytesIO()
