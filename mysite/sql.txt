@@ -1,0 +1,8 @@
+CREATE TABLE `cdn_tcp` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `total_time` float(11,2) DEFAULT NULL,
+  `dns_time` float(11,2) DEFAULT NULL,
+  `conn_time` float(11,2) DEFAULT NULL,
+  `time` bigint(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

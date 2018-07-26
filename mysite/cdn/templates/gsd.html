@@ -1,0 +1,81 @@
+{% load static %}
+<title>GSD 响应时间</title>
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Highstock Example</title>
+
+        <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+        <style type="text/css">
+${demo.css}
+        </style>
+        <script type="text/javascript">
+
+$(function () {
+    $.getJSON('/cdn/data/', function (data) {
+
+        // Create the chart
+        $('#container').highcharts('StockChart', {
+             chart:{ 
+                events:{ 
+                  load:function(){ 
+                     var series = this.series[0] 
+                     setInterval(function(){ 
+                     $.getJSON('/cdn/data',function(res){ 
+                       $.each(res,function(i,v) { 
+                        series.addPoint(v) 
+                          }) 
+                       }) 
+                      },3000) 
+                    } 
+                     } 
+                  },
+
+legend: {
+                enabled: true,
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                backgroundColor: '#FCFFC5',
+                borderColor: 'black',
+                borderWidth: 2,
+                shadow: true
+            },
+ 
+
+
+
+ 
+            rangeSelector: {
+                inputEnabled: $('#container').width() > 480,
+                selected: 1
+            },
+
+            title: {
+                text: 'GSD 响应时间 单位:ms'
+            },
+
+            series: [{
+                name: 'GSD 响应时间',
+                data: data,
+                type: 'spline',
+                tooltip: {
+                    valueDecimals: 2
+                }
+            }]
+
+
+        });
+    });
+});
+        </script>
+    </head>
+    <body>
+<script src="{% static 'js/highstock.js' %}"></script>
+<script src="{% static 'js/exporting.js' %}"></script>
+
+
+<div id="container" style="height: 400px"></div>
+    </body>
+</html>

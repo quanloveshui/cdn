@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'cdn/style.css' %}" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>check cdn m3u8 </title>
+</head>
+<body>
+    <form action="/cdn/check/" method="get">
+        <input type="text" name="url">
+        <input type="submit" value="检查">
+    </form>
+</body>
+</html>
+~

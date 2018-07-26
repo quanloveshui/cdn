@@ -1,0 +1,33 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'cdn/style.css' %}" />
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8"> 
+	<title>cdn</title>
+    </head>
+    <body> 
+        <h2 class="form-heading"><font size="5" face="Cicle">测试结果如下:</font></h2>
+        {% for key, value in result.items %}
+            <ul style="background-color:rgb(255,255,0)">
+             <li>
+                {% if value == 302 %}
+                   This host {{ key }} status  :  {{ value }}  
+                {% elif value == 200 %}
+                    This host {{ key }} status  :  {{ value }} 
+                {% elif value == 400 %}
+                    This host {{ key }} status  :  {{ value }}  Bad Request,please check 
+                {% elif value == 404 %}
+                    This host {{ key }} status  :  {{ value }}  Not Found,please check 
+                {% elif value == 403 %}
+                    This host {{ key }} status  :  {{ value }}  Forbodden,please check 
+                {% elif value == 500 %}
+                    This host {{ key }} status  :  {{ value }}  Internal Server Error,please check 
+                {% else %}
+                    {{ key }}: {{ value }}
+                {% endif %}
+             </li>
+            </ul>
+        {% endfor %}
+     </body> 
+</html>
